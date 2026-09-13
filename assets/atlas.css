@@ -3362,3 +3362,46 @@ kbd{
   .quota-track>b{transition:none!important}
 }
 
+/* Atlas v0.5.13 OS icon scale */
+.node-meta .os-tag{
+  min-height:26px!important;
+  padding:3px 8px!important;
+  gap:7px!important;
+}
+.node-meta .os-logo{
+  width:18px!important;
+  height:18px!important;
+  flex:0 0 18px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:visible!important;
+}
+.node-meta .os-logo svg{
+  width:18px!important;
+  height:18px!important;
+  display:block!important;
+  transform:scale(1.14);
+  transform-origin:center;
+}
+.node-meta .os-logo[data-os="debian"] svg{transform:scale(1.24)}
+.node-meta .os-logo[data-os="ubuntu"] svg{transform:scale(1.16)}
+.node-meta .os-logo[data-os="windows"] svg{transform:scale(1.08)}
+.node-meta .os-logo[data-os="linux"] svg,
+.node-meta .os-logo[data-os="openwrt"] svg,
+.node-meta .os-logo[data-os="bsd"] svg{transform:scale(1.12)}
+@media(max-width:800px){
+  .node-meta .os-tag{
+    min-height:27px!important;
+    padding:3px 8px!important;
+  }
+  .node-meta .os-logo{
+    width:19px!important;
+    height:19px!important;
+    flex-basis:19px!important;
+  }
+  .node-meta .os-logo svg{
+    width:19px!important;
+    height:19px!important;
+  }
+}
