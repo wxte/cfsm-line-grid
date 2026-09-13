@@ -2,7 +2,7 @@
 
 Cloudflare Server Monitor 的第三方监控主题。
 
-当前版本：**v0.5.14**
+当前版本：**v0.5.15**
 
 Atlas 使用原生 HTML / CSS / JavaScript，目标是保留 CF-Server-Monitor 的实时监控能力，同时采用更克制、紧凑的工具型界面。当前设计语言参考 ThreeUI 的中性色层级、细边框、小圆角、等宽信息标签与轻量微交互。
 
@@ -209,3 +209,11 @@ https://github.com/huilang-me/CF-Server-Monitor
 - OS 图标从小 badge 中移出，放到节点名称左侧作为独立系统身份标志。
 - 桌面约 22px，手机约 25px；系统名称改为轻量次级文字。
 - 删除已失效的 v0.5.13 OS 图标尺寸测试。
+
+
+## v0.5.15 节点行精修
+
+- Debian / Ubuntu / CentOS 改用真实发行版 Logo 路径，不再使用过度简化的临时 SVG。
+- 缩短实时下行、实时上行之间以及与 CPU / RAM / DISK 区域之间的空白。
+- 给节点名称和资源监控列更多宽度，避免长节点名换行。
+- CPU / RAM / DISK 进度条加宽并稍微加粗。
