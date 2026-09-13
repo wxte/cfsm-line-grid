@@ -3160,63 +3160,76 @@ nav,
   line-height:1.1!important;
 }
 
+/* Atlas v0.5.12 quota pill polish */
+:root{
+  --atlas-quota-pill-empty:color-mix(in srgb,var(--text) 12%,transparent);
+  --atlas-quota-pill-used:color-mix(in srgb,var(--text) 48%,transparent);
+}
+html[data-theme=dark]{
+  --atlas-quota-pill-empty:color-mix(in srgb,var(--text) 15%,transparent);
+  --atlas-quota-pill-used:color-mix(in srgb,var(--text) 54%,transparent);
+}
+
 .quota-track{
-  --quota-dot:var(--atlas-quota-dot-empty);
+  --quota-pill:var(--atlas-quota-pill-empty);
   display:block;
   position:relative;
   width:100%!important;
   height:7px!important;
-  margin:3px 0 0!important;
+  margin:4px 0 1px!important;
   border:0!important;
-  border-radius:0!important;
+  border-radius:999px!important;
   overflow:hidden!important;
-  background:
-    radial-gradient(circle at 3px 50%,var(--quota-dot) 1.55px,transparent 1.75px)
-    0 0/8px 100% repeat-x!important;
+  background-color:transparent!important;
+  background-image:
+    radial-gradient(ellipse at center,var(--quota-pill) 0 58%,transparent 62%)!important;
+  background-size:10px 5px!important;
+  background-position:left center!important;
+  background-repeat:repeat-x!important;
   box-shadow:none!important;
 }
-.quota-track[hidden]{display:none!important}
+.quota-track[hidden]{
+  display:none!important;
+}
 .quota-track>b{
-  --quota-dot-used:var(--atlas-quota-dot-fill);
+  --quota-pill-used:var(--atlas-quota-pill-used);
   display:block!important;
   height:100%!important;
   margin:0!important;
   border:0!important;
-  border-radius:0!important;
+  border-radius:999px!important;
   overflow:hidden!important;
-  background:
-    radial-gradient(circle at 3px 50%,var(--quota-dot-used) 1.55px,transparent 1.75px)
-    0 0/8px 100% repeat-x!important;
-  color:var(--quota-dot-used)!important;
+  background-color:transparent!important;
+  background-image:
+    radial-gradient(ellipse at center,var(--quota-pill-used) 0 58%,transparent 62%)!important;
+  background-size:10px 5px!important;
+  background-position:left center!important;
+  background-repeat:repeat-x!important;
+  color:var(--quota-pill-used)!important;
   box-shadow:none!important;
   transition:width 180ms ease!important;
 }
-.quota-track>b::after{display:none!important}
+.quota-track>b::after{
+  display:none!important;
+}
 .quota-track>b.safe,
 .quota-track>b.warn{
-  --quota-dot-used:var(--atlas-quota-dot-fill);
+  --quota-pill-used:var(--atlas-quota-pill-used);
 }
 .quota-track>b.hot{
-  --quota-dot-used:color-mix(in srgb,var(--warn) 80%,var(--text));
+  --quota-pill-used:color-mix(in srgb,var(--warn) 68%,var(--text));
 }
 .quota-track>b.over,
 .quota-track>b.critical{
-  --quota-dot-used:var(--bad);
+  --quota-pill-used:color-mix(in srgb,var(--bad) 82%,var(--text));
 }
 .quota-track>b.unknown{
-  --quota-dot-used:var(--atlas-quota-dot-empty);
+  --quota-pill-used:var(--atlas-quota-pill-empty);
 }
-.quota-remaining{
-  display:block!important;
-  width:100%!important;
-  margin:0!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-  white-space:nowrap!important;
-  font-family:var(--atlas-ui-mono)!important;
-  font-size:9.5px!important;
-  line-height:1.12!important;
-  color:var(--muted)!important;
+@media(prefers-reduced-motion:reduce){
+  .quota-track>b{
+    transition:none!important;
+  }
 }
 
 .node-pings{
@@ -3348,3 +3361,4 @@ kbd{
 @media(prefers-reduced-motion:reduce){
   .quota-track>b{transition:none!important}
 }
+

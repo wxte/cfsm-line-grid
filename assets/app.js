@@ -1,12 +1,12 @@
-import {HistoryAPI} from './history-api.js?v=0.5.11';
-import {recordResources} from './resource-recorder.js?v=0.5.11';
-import {highLoad,expiring,ActivityObserver} from './insights.js?v=0.5.11';
-import {ViewRouter,pages,pageFromHash} from './router.js?v=0.5.11';
-import {flag} from './flags.js?v=0.5.11';
-import {windowSamples,historyFromArrays,aggregateHistory} from './network-core.js?v=0.5.11';
-import {n,numeric,percent,fmtPct,ping,loss,bytes,online,uptime,month,trafficQuota,avg,total,costs,cycles,region,mergeSample} from './data.js?v=0.5.11';
-import {DeferredNodeMap} from './lazy-map.js?v=0.5.11';
-import {Plot} from './plot.js?v=0.5.11';
+import {HistoryAPI} from './history-api.js?v=0.5.12';
+import {recordResources} from './resource-recorder.js?v=0.5.12';
+import {highLoad,expiring,ActivityObserver} from './insights.js?v=0.5.12';
+import {ViewRouter,pages,pageFromHash} from './router.js?v=0.5.12';
+import {flag} from './flags.js?v=0.5.12';
+import {windowSamples,historyFromArrays,aggregateHistory} from './network-core.js?v=0.5.12';
+import {n,numeric,percent,fmtPct,ping,loss,bytes,online,uptime,month,trafficQuota,avg,total,costs,cycles,region,mergeSample} from './data.js?v=0.5.12';
+import {DeferredNodeMap} from './lazy-map.js?v=0.5.12';
+import {Plot} from './plot.js?v=0.5.12';
 const $ = s => document.querySelector(s);
 const icons={
  sun:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.3"/><path d="M12 2v2.1M12 19.9V22M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M2 12h2.1M19.9 12H22M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"/></svg>',
@@ -119,13 +119,13 @@ let charts=null,networkChartsPromise=null,nodeTrendsModule=null;
 const historyAPI=new HistoryAPI();
 function ensureNetworkCharts(){
  if(charts)return Promise.resolve(charts);
- if(!networkChartsPromise)networkChartsPromise=import('./network.js?v=0.5.11').then(({NetworkCharts})=>{charts=new NetworkCharts();charts.live=chartState.live;charts.rangeMs=chartState.rangeMs;return charts;});
+ if(!networkChartsPromise)networkChartsPromise=import('./network.js?v=0.5.12').then(({NetworkCharts})=>{charts=new NetworkCharts();charts.live=chartState.live;charts.rangeMs=chartState.rangeMs;return charts;});
  return networkChartsPromise;
 }
 function renderNodeTrendsDeferred(row,s,history,enabled){
  if(!row.querySelector('.node-detail')?.open)return;
  if(nodeTrendsModule){nodeTrendsModule.renderNodeTrends(row,s,history,enabled);return;}
- import('./node-trends.js?v=0.5.11').then(mod=>{nodeTrendsModule=mod;if(row.querySelector('.node-detail')?.open)mod.renderNodeTrends(row,s,history,enabled);}).catch(()=>{});
+ import('./node-trends.js?v=0.5.12').then(mod=>{nodeTrendsModule=mod;if(row.querySelector('.node-detail')?.open)mod.renderNodeTrends(row,s,history,enabled);}).catch(()=>{});
 }
 let historyGeneration=0,historyLoading=false,historyLoadedAt=0,historyResults=new Map();
 try{const saved=sessionStorage.getItem('atlas-network-range'),hours=Number(sessionStorage.getItem('atlas-network-hours'));if(saved==='live'){chartState.live=true;chartState.rangeMs=liveRangeMs;}else if(serverHistoryHours.includes(hours)){chartState.live=false;chartState.rangeMs=hours*3600000;}else{chartState.live=false;chartState.rangeMs=24*3600000;}}catch{chartState.live=false;chartState.rangeMs=86400000;}
@@ -436,6 +436,6 @@ addEventListener('pageshow',e=>{if(e.persisted)location.reload();});
 const compact=matchMedia('(max-width:800px)');const foldPanels=()=>document.querySelectorAll('.regions-panel,.quality-panel').forEach(el=>el.open=!compact.matches);foldPanels();compact.addEventListener?.('change',foldPanels);
 
 // Non-critical command palette/toast enhancements load after the dashboard is interactive.
-const loadEnhancements=()=>import('./enhancements.js?v=0.5.11').catch(()=>{});
+const loadEnhancements=()=>import('./enhancements.js?v=0.5.12').catch(()=>{});
 if('requestIdleCallback' in window)requestIdleCallback(loadEnhancements,{timeout:2200});else setTimeout(loadEnhancements,900);
 
